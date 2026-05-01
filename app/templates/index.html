@@ -1,3 +1,5 @@
+{% from "macros.html" import render_table %}
+
 <!doctype html>
 <html lang="ru">
 <head>
@@ -6,30 +8,32 @@
     <title>Здания и сооружения</title>
 </head>
 <body>
+  <a id="top"></a>
   <h1>
     Самые высокие здания и сооружения
   </h1>
-    <table>
-      <!-- формируем заголовок таблицы (имена столбцов) -->
-      <thead>
-        <tr>
-          <!-- выводим имя каждого столбца -->
-            {% for item in type_buildings_head %}
-              <th> {{ item }} </th>
-            {% endfor %}
-          </tr>
-      </thead>
-      <tbody>
-      <!-- для всех строк таблицы -->
-        {% for row in type_buildings_body %}
-          <tr>
-          <!-- выводим значение каждого столбца -->
-            {% for item in row %}
-              <td> {{ item }} </td>
-            {% endfor %}
-          </tr>
-          {% endfor %}
-        </tbody>
-    </table>
+
+  <nav class="menu">
+    <ul>
+        <li><a href="#types">Типы зданий</a></li>
+        <li><a href="#buildings">Здания</a></li>
+        <li><a href="#stats-type">Статистика по типам</a></li>
+        <li><a href="#stats-country">Статистика по странам</a></li>
+    </ul>
+</nav>
+
+  <h2 id="types">Типы зданий</h2>
+  {{ render_table(type_buildings_head, type_buildings_body) }}
+
+  <h2 id="buildings">Здания</h2>
+  {{ render_table(buildings_head, buildings_body) }}
+
+  <h2 id="stats-type">Статистика по типам зданий</h2>
+  {{ render_table(stats_type_head, stats_type_body) }}
+
+  <h2 id="stats-country">Статистика по странам</h2>
+  {{ render_table(stats_country_head, stats_country_body) }}
+
+  <a href="#top" class="back-to-top">⬆ Наверх</a>
 </body>
 </html>
