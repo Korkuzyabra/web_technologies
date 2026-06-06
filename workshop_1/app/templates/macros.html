@@ -1,0 +1,20 @@
+{% macro render_table(head, body) %}
+<table>
+    <thead>
+        <tr>
+            {% for item in head %}
+            <th>{{ item }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in body %}
+        <tr>
+            {% for item in row %}
+            <td>{{ item }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endmacro %}
