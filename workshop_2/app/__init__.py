@@ -1,25 +1,26 @@
 from flask import Flask
-from app.config import DevelopmentConfig
-from app.extensions import db
+from .extensions import db
+from .config import DevelopmentConfig
+
+#  модели
+from app.models.buildings import Building
+from app.models.type_building import TypeBuilding
+from app.models.city import City
+from app.models.country import Country
+
+#  маршруты
+from .routes import title, buildings
 
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(DevelopmentConfig)
+    app.json.ensure_ascii = False
 
-    # Инициализация db
+    # Инициализация расширений
     db.init_app(app)
 
-    # Импортируем модели В ПРАВИЛЬНОМ ПОРЯДКЕ (сначала независимые, потом зависимые)
-    from app.models.country import Country
-    from app.models.type_building import TypeBuilding
-    from app.models.city import City
-    from app.models.buildings import Building  # Building импортируется последним
-
-    # Импортируем routes
-    from .routes import title, buildings
-
-    # Регистрация Blueprint
+    # Регистрация Blueprint-ов
     app.register_blueprint(title.bp_title, url_prefix="/api/v1/title")
     app.register_blueprint(buildings.building_bp, url_prefix="/api/v1/buildings")
 
