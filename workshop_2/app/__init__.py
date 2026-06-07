@@ -9,7 +9,7 @@ from app.models.city import City
 from app.models.country import Country
 
 #  маршруты
-from .routes import title, buildings
+from .routes import title, buildings, aggregate
 
 
 def create_app():
@@ -23,5 +23,6 @@ def create_app():
     # Регистрация Blueprint-ов
     app.register_blueprint(title.bp_title, url_prefix="/api/v1/title")
     app.register_blueprint(buildings.building_bp, url_prefix="/api/v1/buildings")
+    app.register_blueprint(aggregate.aggregate_bp, url_prefix="/api/v1/aggregate")
 
     return app
