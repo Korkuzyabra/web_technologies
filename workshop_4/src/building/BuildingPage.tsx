@@ -1,16 +1,15 @@
-import Gallery from "./components/Gallery";
-import Content from "./components/Content";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import Building from "./Building";
 
-function Main() {
+
+const BuildingPage = () => {
     return (
         <div>
             <NavBar active="1"/>
-            <Gallery/>
-            <Content/>
+            <Building/>
             <Footer/>
         </div>
     );
 }
-export default Main;
+export default BuildingPage;

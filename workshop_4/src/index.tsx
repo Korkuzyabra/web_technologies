@@ -10,6 +10,7 @@ import {
 
 import  List  from "./list/List";
 import  Main  from "./main/Main";
+import BuildingPage from "./building/BuildingPage";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
         path: "/list",
         element: <List />,
     },
+    {
+        path: "/building/:id",
+        element: <BuildingPage />,
+    }
 ]);
 
 
