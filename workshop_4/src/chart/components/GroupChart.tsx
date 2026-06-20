@@ -1,7 +1,8 @@
 import {tGroup} from "../groupdata";
 import {Container} from "@mui/material";
-import {BarChart} from "@mui/x-charts";
+import {BarChart, LineChart} from "@mui/x-charts";
 import { useState} from "react";
+import SettingChart from "./SettingChart";
 
 type Props = {
      data: tGroup
@@ -19,23 +20,44 @@ const GroupChart = ({data} : Props) => {
     'Минимальная высота': false,
   });
 
+  const [isBar, setIsBar] = useState(true);
+
+  let seriesY = Object.entries(series)
+      .filter(item => item[1] == true)
+      .map(item => {
+          return {
+              "dataKey": item[0], "label": item[0],
+              ...(Object.values(series).filter(Boolean).length === 1 && {
+                  barLabel: "value" as const
+              })
+          };
+      });
+
   return (
     <Container maxWidth="lg">
-      <BarChart
+        {isBar ? (<BarChart
         dataset={data}
         xAxis={[{ scaleType: 'band', dataKey: 'Группа' }]}
-        series={[
-          { dataKey: 'Минимальная высота', label: 'Минимальная высота'},
-          { dataKey: 'Средняя высота', label: 'Средняя высота'},
-          { dataKey: 'Максимальная высота', label: 'Максимальная высота'},
-        ]}
+        series={ seriesY }
         slotProps={{
           legend: {
             position: { vertical: 'bottom', horizontal: 'center' },
           },
         }}
         {...chartSetting}
-      />
+      />) : (
+        <LineChart
+            dataset={ data }
+            xAxis={[{ scaleType: 'band', dataKey: 'Группа' }]}
+            series={ seriesY}
+            slotProps={{
+                legend: {
+                    position: { vertical: 'bottom', horizontal: 'center' },
+                },
+            }}
+            {...chartSetting}
+        />)}
+        <SettingChart series={ series } setSeries={ setSeries } isBar={isBar} setIsBar={setIsBar} />
     </Container>
   );
 };
