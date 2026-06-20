@@ -11,6 +11,7 @@ import {
 import  List  from "./list/List";
 import  Main  from "./main/Main";
 import BuildingPage from "./building/BuildingPage";
+import Chart from "./chart/Chart";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
     {
         path: "/building/:id",
         element: <BuildingPage />,
+    },
+    {
+        path: "/chart",
+        element: <Chart/>
     }
 ]);
 
