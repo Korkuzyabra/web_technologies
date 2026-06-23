@@ -11,7 +11,7 @@ function Quiz() {
                     <Typography variant="h5" gutterBottom>
                         {index + 1}. { item.title }
                     </Typography>
-                    <Matching tasks={item.tasks}/>
+                    <Matching index={index} tasks={ item.tasks }/>
                 </Box>
             ))}
             <Box sx={{ display: 'flex', justifyContent:'space-around' }}>
