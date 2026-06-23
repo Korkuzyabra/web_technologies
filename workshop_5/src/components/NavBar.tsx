@@ -73,6 +73,11 @@ function NavBar({ active } : NavBarProps) {
                             Диаграммы
                             </Button>
                         </Link>
+                        <Link to="/testing">
+                            <Button variant={active === '4' ? 'contained' : 'text'} color="info" size="medium">
+                                Проверь себя
+                            </Button>
+                        </Link>
                     </Box>
                     <Box sx={{ display: { xs: 'flex', md: 'none' }}}>
                         <IconButton aria-label="Menu button">
@@ -121,6 +126,15 @@ function NavBar({ active } : NavBarProps) {
                                     >
                                          Диаграммы
                                      </MenuItem>
+
+                                    <MenuItem
+                                        component={Link}
+                                        to="testing"
+                                        selected={active === '4'}
+                                        sx={MenuItemStyle}
+                                    >
+                                        Диаграммы
+                                    </MenuItem>
                                 </MenuList>
                             </Drawer>
                         </IconButton>
